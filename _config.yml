@@ -1,0 +1,7 @@
+theme: jekyll-theme-modernist
+exclude: ['README.md']
+title: Laboratorio de Funciones
+description: ¡Jugá operando con las funciones y valores!
+github:
+  owner_name: Uqbar
+  owner_url: http://www.uqbar.org
