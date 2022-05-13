@@ -3,12 +3,12 @@ pipeline {
   stages {
     stage('test'){
       steps {
-        sh 'mvn test'
+        sh 'npm test'
       }
     }
     stage('build') {
       steps {
-        sh 'mvn package'
+        sh 'npm package'
       }
     }
 
