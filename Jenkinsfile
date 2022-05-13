@@ -15,7 +15,8 @@ pipeline {
     stage('SonarQube Analysis') {
       steps {
         withSonarQubeEnv(installationName: 'sonarqube', credentialsId: 'token-sonarqube') {
-          sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=UQ_function-laboratory_AYC_pFv8_U0bYDpZAccC'
+          sh 'sonar:sonar \
+          -Dsonar.projectKey=UQ_function-laboratory_AYC_pFv8_U0bYDpZAccC'
         }
       }
     }
