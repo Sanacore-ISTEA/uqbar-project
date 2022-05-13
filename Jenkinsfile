@@ -8,7 +8,6 @@ pipeline {
     }
     stage('test'){
       steps {
-        dir("build_node")
         sh 'npm test'
       }
     }
