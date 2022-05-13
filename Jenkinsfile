@@ -6,11 +6,5 @@ pipeline {
         sh 'npm test'
       }
     }
-    stage('build') {
-      steps {
-        sh 'npm package'
-      }
-    }
-
   }
 }
