@@ -13,16 +13,11 @@ pipeline {
     }
 
     stage('SonarQube Analysis') {
-      steps {
-        script{
           sonar.projectKey=UQ_function-laboratory_AYC_pFv8_U0bYDpZAccC
           def scannerHome = tool 'SonarScanner';
           withSonarQubeEnv() {
-          sh "${scannerHome}/bin/sonar-scanner"
-        }
-        
+            sh "${scannerHome}/bin/sonar-scanner"
        } 
-      }
     }
   }
 }
