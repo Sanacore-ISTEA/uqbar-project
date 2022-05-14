@@ -18,7 +18,7 @@ pipeline {
           sh "npm install --save-dev mocha chai"
           sh "npm run test"
           sh "npm install sonar-scanner"
-          sh "npm run sonar"
+          sh "npm run sonar-scanner"
         }
       }
     }
