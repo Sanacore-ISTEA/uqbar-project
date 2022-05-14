@@ -12,14 +12,12 @@ pipeline {
       }
     }
 
-    stage('SonarQube Analysis') {
-          sonar.projectKey=UQ_function-laboratory_AYC_pFv8_U0bYDpZAccC
-          steps {
-          def scannerHome = tool 'SonarScanner';
-          withSonarQubeEnv(installationName: 'SonarScanner', credentialsId: 'token-sonarqube') {
-            sh "${scannerHome}/bin/sonar-scanner"
-          }       
-       } 
+        stage('SonarQube Analysis') {
+      steps {
+        withSonarQubeEnv(installationName: 'sonarqube', credentialsId: 'token-sonarqube') {
+          sh 'sonar-scanner -Dsonar.projectKey=UQ_function-laboratory_AYC_pFv8_U0bYDpZAccC'
+        }
+      }
     }
   }
 }
