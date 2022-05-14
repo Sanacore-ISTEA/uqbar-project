@@ -15,7 +15,10 @@ pipeline {
         stage('SonarQube Analysis') {
       steps {
         withSonarQubeEnv(installationName: 'sonarqube', credentialsId: 'token-sonarqube') {
-          sh 'sonar-scanner -Dsonar.projectKey=UQ_function-laboratory_AYC_pFv8_U0bYDpZAccC'
+          sh "npm install --save-dev mocha chai"
+          sh "npm run test"
+          sh "npm install sonar-scanner"
+          sh "npm run sonar"
         }
       }
     }
