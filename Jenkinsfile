@@ -12,13 +12,13 @@ pipeline {
       }
     }
 
-        stage('SonarQube Analysis') {
-      steps {
-        withSonarQubeEnv(installationName: 'sonarqube', credentialsId: 'token-sonarqube') {
-          sh "npm install --save-dev mocha chai"
-          sh "npm run test"
-          sh "npm install sonar-scanner"
-          sh "npm run sonar-scanner"
+      stage('SonarQube Analysis') {
+        steps {
+        nodejs(nodeJSInstallationNme: 'nodejs'){
+          sh "npm install"
+            withSonarQubeEnv(installationName: 'sonarqube', credentialsId: 'token-sonarqube') {
+              sh "npm install sonar-scanner"
+              sh "npm run sonar"
         }
       }
     }
