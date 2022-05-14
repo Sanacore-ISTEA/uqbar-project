@@ -16,7 +16,7 @@ pipeline {
           sonar.projectKey=UQ_function-laboratory_AYC_pFv8_U0bYDpZAccC
           steps {
           def scannerHome = tool 'SonarScanner';
-          withSonarQubeEnv() {
+          withSonarQubeEnv(installationName: 'SonarScanner', credentialsId: 'token-sonarqube') {
             sh "${scannerHome}/bin/sonar-scanner"
           }       
        } 
