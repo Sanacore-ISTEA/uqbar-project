@@ -17,7 +17,7 @@ pipeline {
         script{
         sh "npm install sonar-scanner"
         withSonarQubeEnv(installationName: 'sonarqube', credentialsId: 'token-sonarqube') {
-        sh 'npn sonar-scanner -Dsonar.projectKey=UQ_function-laboratory_AYC_pFv8_U0bYDpZAccC -Dsonar.sources=./src'
+        sh 'sonar-scanner -Dsonar.projectKey=UQ_function-laboratory_AYC_pFv8_U0bYDpZAccC -Dsonar.sources=./src'
 }
         
        } 
