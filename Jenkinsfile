@@ -28,6 +28,9 @@ pipeline {
       steps {
         timeout(time: 1, unit: 'MINUTES') {
           waitForQualityGate abortPipeline: true, credentialsId: 'token-sonarQube'
+               if (qualitygate.status != "OK") {
+         error "Pipeline aborted due to quality gate coverage failure: ${qualitygate.status}"
+      }
         }
       }
     }
