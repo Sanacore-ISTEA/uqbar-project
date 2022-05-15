@@ -12,16 +12,25 @@ pipeline {
         }
       }
 
-        stage('SonarQube Analysis') {
-          steps {
-          nodejs(nodeJSInstallationName: 'nodejs'){
-            sh "npm install"
-              withSonarQubeEnv('sonarqube') {
-                sh "npm install sonar-scanner"
-                sh "npm run sonar"
+    stage('SonarQube analysis') {
+      steps {
+        script {
+          def scannerHome = tool 'SonarQube Scanner 4.7';
+          withSonarQubeEnv(installationName: 'My SonarQube Server', credentialsId: 'token-sonarQube') {
+            sh "${scannerHome}/bin/sonar-scanner"
           }
         }
       }
     }
+ 
+
+    stage("Quality Gate") {
+      steps {
+        timeout(time: 1, unit: 'MINUTES') {
+          waitForQualityGate abortPipeline: true, credentialsId: 'token-sonarQube'
+        }
+      }
+    }
+
   }
 }
