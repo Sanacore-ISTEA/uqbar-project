@@ -27,7 +27,11 @@ pipeline {
     stage("Quality Gate") {
       steps {
         timeout(time: 1, unit: 'MINUTES') {
-          waitForQualityGate abortPipeline: true, credentialsId: 'token-sonarQube'        
+          def qg = waitForQualityGate abortPipeline: true, credentialsId: 'token-sonarQube'        
+          if (qg.status != 'OK') {
+                            echo "Status: ${qg.status}"
+                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                        }
         }
       }
     }
